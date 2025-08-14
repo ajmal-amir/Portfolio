@@ -65,11 +65,12 @@
                 </p>
 
                 <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                    <p class="tab-links" onclick="opentab('experience')">Experiences</p>
-                    <p class="tab-links" onclick="opentab('education')">Education</p>
-                    <p class="tab-links" onclick="opentab('projects')">Projects</p>
-                </div>
+                    <p class="tab-links active-link" onclick="opentab(event,'skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab(event,'experience')">Experiences</p>
+                    <p class="tab-links" onclick="opentab(event,'education')">Education</p>
+                    <p class="tab-links" onclick="opentab(event,'projects')">Projects</p>
+                  </div>
+                  
 
                 <div class="tab-contents active-tab" id="skills">
                     <ul>
@@ -295,10 +296,10 @@
                 <div class="social-icons">
                     <a href=""><i class="fa-brands fa-facebook"></i></a>
                     <a href="https://www.linkedin.com/in/ajmal-amir-0549159a/"><i class="fa-brands fa-linkedin"></i></i></a>
-                    <a href="https://github.com/ajmalamir19"><i class="fa-brands fa-github"></i></i></a>
+                    <a href="https://github.com/ajmal-amir"><i class="fa-brands fa-github"></i></i></a>
                     <a href="https://www.instagram.com/qasim_aimal/"><i class="fa-brands fa-instagram"></i></i></a>
                 </div>
-                <a href="img/Ajmal_Amir_Resume.docx" dowload class="btn btn2">Dwonload Resume</a>
+                <a href="img/Ajmal_Amir_Resume.docx" download class="btn btn2">Download Resume</a>
             </div>
             <div class="contact-right">
                 <form name="submit-to-google-sheet">
@@ -313,55 +314,11 @@
         </div>
     </div>
     <div class="copyright">
-        <p>Designed <i class="fa-solid fa-hand-holding-heart"></i><a href="https://webpages.charlotte.edu/aamir/itis3135/amirwavetech.com/index.html"> by AmirWave Tech</a> &copy; 2023</p>
+        <p>Designed <i class="fa-solid fa-hand-holding-heart"></i><a href="https://github.com/ajmal-amir"> by Ajmal Amir </a> &copy; 2025</p>
     </div>
 </div>
 
 </body>
-<!-- <script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents")
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link")
-        document.getElementById(tabname).classList.add("active-tab");
-    }
-</script>
-<script>
-    var sideMenu = document.getElementById("sideMenu");
 
-    function openMenu(){
-        sideMenu.style.right = "0";
-    }
-
-    function closeMenu(){
-        sideMenu.style.right = "-200px";
-    }
-</script> -->
-
-<!-- <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzpeJmTKbmhhlGJTS2bWFybeb3degqW7zJZGW0zCfmXqPvJqvPK3hHhT_1Yt5cXVUQiuQ/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msg = document.getElementById('msg');
-
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-      msg.innerHTML = "Message sent successfully"
-      setTimeout(function(){
-        msg.innerHTML = "";
-      }, 5000)
-
-      form.reset()
-  })
-      .catch(error => console.error('Error!', error.message))
-  })
-</script> -->
 <script src="js/script.js"></script>
 </html>
