@@ -15,7 +15,7 @@ function openMenu(){  sideMenu.style.right = "0"; }
 function closeMenu(){ sideMenu.style.right = "-200px"; }
 
 /* Google Sheet form submit */
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzpeJmTKbmhhlGJTS2bWFybeb3degqW7zJZGW0zCfmXqPvJqvPK3hHhT_1Yt5cXVUQiuQ/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzfj5cQ51aIpdM7EKL3KEwQZPWx7DKViTO51Sz0CEkaO16M_i2LBQUb9uwOAsC0ONj0/exec';
 const form = document.forms['submit-to-google-sheet'];
 const msg  = document.getElementById('msg');
 
