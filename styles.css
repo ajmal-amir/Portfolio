@@ -116,7 +116,7 @@ body{
       margin: 0 !important;
       padding: 0;
       text-align: left;
-      font-size: 14px;
+      font-size: 10px;
       line-height: 1.3;
       max-width: calc(100% - 32px);
       z-index: 2;            /* above background, below menu */
