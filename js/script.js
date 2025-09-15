@@ -24,7 +24,7 @@ https://script.google.com/u/0/home/projects/1HttZA4IJl3RsfAwSqEPrrDrN24fCM6ygCo-
 */
 
 /* Google Sheet form submit (hardened) */
-const scriptURL = "https://script.google.com/macros/s/AKfycbzVurzrBU5nR0jFMrF37RyIniM3wZVEjyMDNAEASSFfHYtqml_qvOpHb4CWU8MMesnA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzfj5cQ51aIpdM7EKL3KEwQZPWx7DKViTO51Sz0CEkaO16M_i2LBQUb9uwOAsC0ONj0/exec";
 const form      = document.forms["submit-to-google-sheet"];
 const msg       = document.getElementById("msg");
 
@@ -90,7 +90,7 @@ if (form) {
     }
 
     // content checks
-    const badReason = looksBad(`${name}\n${email}\n${message}`);
+    const badReason = looksBad(`${name}\n${message}`);
     if (badReason) {
       msg.textContent = badReason;
       return;
