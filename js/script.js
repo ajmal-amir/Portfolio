@@ -120,3 +120,42 @@ if (form) {
     }
   });
 }
+
+
+
+// Private repo modal handler (non-invasive)
+document.addEventListener('click', (e) => { // delegate
+  const link = e.target.closest('a.private-repo'); // link with class "private-repo"
+  if (!link) return;
+
+  e.preventDefault(); // prevent navigation
+  const modal = document.getElementById('privateRepoModal');
+  if (!modal) return;
+
+  const nameSpan = modal.querySelector('#modalProject');
+  if (nameSpan) nameSpan.textContent = link.dataset.project || 'This repository';
+
+  openPrivateRepoModal(modal);
+});
+
+function openPrivateRepoModal(modal){
+  modal.hidden = false;
+  const first = modal.querySelector('.modal__close') || modal.querySelector('[data-close]') || modal;
+  first && first.focus();
+  document.addEventListener('keydown', escClosePrivateModal);
+}
+
+function escClosePrivateModal(ev){
+  if (ev.key === 'Escape') closePrivateRepoModal(document.getElementById('privateRepoModal'));
+}
+
+function closePrivateRepoModal(modal){
+  if (!modal) return;
+  modal.hidden = true;
+  document.removeEventListener('keydown', escClosePrivateModal);
+}
+
+// close buttons & backdrop
+document.querySelectorAll('#privateRepoModal [data-close]').forEach(el => {
+  el.addEventListener('click', () => closePrivateRepoModal(document.getElementById('privateRepoModal')));
+});

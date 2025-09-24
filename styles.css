@@ -568,3 +568,28 @@ nav .fa-solid{
     margin-top: -40px;
     display: block;
 }
+
+
+/* Modal (keeps your existing IDs/classes intact) */
+.modal[hidden]{ display:none; }
+.modal{ position:fixed; inset:0; z-index:10050; }
+.modal__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.6); }
+.modal__card{
+  position:relative;
+  max-width:520px;
+  margin:10vh auto;
+  background:#1a1a1a;
+  color:#fff;
+  border-radius:12px;
+  padding:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  border:1px solid #333;
+}
+.modal__close{
+  position:absolute; top:8px; right:12px;
+  font-size:22px; background:transparent; color:#fff;
+  border:0; cursor:pointer;
+}
+.modal__actions{ display:flex; gap:12px; margin-top:16px; }
+.modal__actions .btn{ border:1px solid #ff004f; padding:10px 16px; border-radius:6px; text-decoration:none; color:#fff; }
+.modal__actions .btn.btn2{ background:#ff004f; }
