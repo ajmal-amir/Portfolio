@@ -202,7 +202,7 @@ document.querySelectorAll("#privateRepoModal [data-close]").forEach((el) => {
 //       to avoid artificially inflating the counter on repeated refreshes.
 
 const COUNT_NS = "ajmal-amir-portfolio"; // choose any unique namespace
-const COUNT_KEY = "home"; // a key inside that namespace
+const COUNT_KEY = "Portfolio"; // a key inside that namespace
 const COUNT_SPAN_ID = "visitCount"; // where to print the number
 
 async function updateVisitorCounter() {
@@ -240,3 +240,4 @@ async function updateVisitorCounter() {
 }
 
 document.addEventListener("DOMContentLoaded", updateVisitorCounter);
+
