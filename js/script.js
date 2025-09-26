@@ -203,42 +203,49 @@ document.querySelectorAll("#privateRepoModal [data-close]").forEach((el) => {
 
 const COUNT_NS = "ajmal-amir.github.io"; // choose any unique namespace
 const COUNT_KEY = "Portfolio"; // a key inside that namespace
-const COUNT_SPAN_ID = "visitCount"; // where to print the number
+const COUNT_SPAN_ID = "visitCount";
+const BADGE_ID      = "visitBadge";
 
-async function updateVisitorCounter() {
-  const el = document.getElementById(COUNT_SPAN_ID);
-  if (!el) return; // no placeholder found; skip
+// Set to true temporarily to see it increment on every refresh (testing only)
+const FORCE_HIT_ON_EVERY_LOAD = false;
 
-  // Prevent multiple increments by the same user on the same day:
-  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-  const lastHit = localStorage.getItem("count_hit_date");
+async function updateVisitorCounter(){
+  const span  = document.getElementById(COUNT_SPAN_ID);
+  const badge = document.getElementById(BADGE_ID);
+  if (!span) return;
 
-  // If we already incremented today, just GET the current total; else HIT (+1)
-  const endpoint =
-    lastHit === today
-      ? `https://api.countapi.xyz/get/${encodeURIComponent(
-          COUNT_NS
-        )}/${encodeURIComponent(COUNT_KEY)}`
-      : `https://api.countapi.xyz/hit/${encodeURIComponent(
-          COUNT_NS
-        )}/${encodeURIComponent(COUNT_KEY)}`;
+  // Build endpoints
+  const base = "https://api.countapi.xyz";
+  const hit  = `${base}/hit/${encodeURIComponent(COUNT_NS)}/${encodeURIComponent(COUNT_KEY)}`;
+  const get  = `${base}/get/${encodeURIComponent(COUNT_NS)}/${encodeURIComponent(COUNT_KEY)}`;
+
+  // De-dup: only +1 once per day per browser unless FORCE_HIT... is true
+  const today   = new Date().toISOString().slice(0,10);
+  const lastHit = localStorage.getItem("count_hit_portfolio_date");
+  const endpoint = FORCE_HIT_ON_EVERY_LOAD ? hit : (lastHit === today ? get : hit);
 
   try {
     const res = await fetch(endpoint, { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
-    // data.value is the current counter total
-    el.textContent = Number(data.value).toLocaleString();
-
-    if (lastHit !== today) {
-      localStorage.setItem("count_hit_date", today);
+    if (!data || typeof data.value !== "number") throw new Error("Bad payload");
+    span.textContent = Number(data.value).toLocaleString();
+    if (endpoint === hit && !FORCE_HIT_ON_EVERY_LOAD) {
+      localStorage.setItem("count_hit_portfolio_date", today);
     }
   } catch (err) {
-    // fallback UI if the service is temporarily unavailable
-    el.textContent = "n/a";
-    console.error("Visitor counter error:", err);
+    // Fallback: show the badge image counter instead of 'n/a'
+    if (badge) {
+      span.style.display = "none";
+      badge.style.display = "inline";
+    } else {
+      span.textContent = "—";
+    }
+    // Optional: console.error("Visitor counter error:", err);
   }
 }
 
 document.addEventListener("DOMContentLoaded", updateVisitorCounter);
+
 
 
